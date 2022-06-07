@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\MethodController;
+use App\Http\Controllers\MonthController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return (new ScheduleController)->index();
 });
+
+Route::get('schedules', [ScheduleController::class, 'index']);
+Route::get('get-schedules', [ScheduleController::class, 'getindex']);
+Route::post('add-update-schedule', [ScheduleController::class, 'store']);
+Route::post('edit-schedule', [ScheduleController::class, 'edit']);
+Route::post('delete-schedule', [ScheduleController::class, 'destroy']);
+
+Route::post('add-update-month', [MonthController::class, 'store']);
+Route::post('edit-month', [MonthController::class, 'edit']);
+Route::post('delete-month', [MonthController::class, 'destroy']);
+
+Route::post('add-update-method', [MethodController::class, 'store']);
+Route::post('edit-method', [MethodController::class, 'edit']);
+Route::post('delete-method', [MethodController::class, 'destroy']);
